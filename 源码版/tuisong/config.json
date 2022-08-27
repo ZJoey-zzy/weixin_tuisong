@@ -12,7 +12,7 @@
     "Whether_Eng": true,
     "Whether_caihongpi": true,
     "Whether_lizhi": true,
-    "Whether_tip": true,
+    "Whether_tip": false,
     "Whether_health": true,
     "Whether_lucky": true,
     "tianxing_API": "1333db493976bc43dd71a8efb5b61548",
