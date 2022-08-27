@@ -25,4 +25,5 @@ jobs:
           pip3 install -r requirements.txt
       - name: time-push
         run: |
+          cd ./源码版/tuisong/
           python3 main.py
