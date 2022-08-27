@@ -168,7 +168,8 @@ def lucky():
             data = ["爱情指数：" + str(data["newslist"][1]["content"]),
                     "\n学习指数："+str(data["newslist"][2]["content"]),
                     "\n财运指数："+str(data["newslist"][3]["content"]),
-                    "\n贵人星座："+str(data["newslist"][7]["content"])]
+                    "\n贵人星座："+str(data["newslist"][7]["content"]),
+                    "\n今日概述："+str(data["newslist"][7]["content"])]
         
             return "".join(data)
         except:
