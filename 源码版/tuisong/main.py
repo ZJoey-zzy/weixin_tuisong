@@ -156,24 +156,24 @@ def health():
 #星座运势
 def lucky():
     if ( Whether_lucky!=False):
-        # try:
-        conn = http.client.HTTPSConnection('api.tianapi.com')  #接口域名
-        params = urllib.parse.urlencode({'key':tianxing_API,'astro':astro})
-        headers = {'Content-type':'application/x-www-form-urlencoded'}
-        conn.request('POST','/star/index',params,headers)
-        res = conn.getresponse()
-        data = res.read()
-        data = json.loads(data)
+        try:
+            conn = http.client.HTTPSConnection('api.tianapi.com')  #接口域名
+            params = urllib.parse.urlencode({'key':tianxing_API,'astro':astro})
+            headers = {'Content-type':'application/x-www-form-urlencoded'}
+            conn.request('POST','/star/index',params,headers)
+            res = conn.getresponse()
+            data = res.read()
+            data = json.loads(data)
+
+            data = ["爱情指数：" + str(data["newslist"][1]["content"]),
+                    "\n学习指数："+str(data["newslist"][2]["content"]),
+                    "\n财运指数："+str(data["newslist"][3]["content"]),
+                    "\n贵人星座："+str(data["newslist"][7]["content"]),
+                    "\n今日概述："+str(data["newslist"][8]["content"])]
         
-        data = "爱情指数："+str(data["newslist"][1]["content"]) 
-        + "\n学习指数："+str(data["newslist"][2]["content"])
-        + "\n财运指数："+str(data["newslist"][3]["content"])
-        + "\n贵人星座："+str(data["newslist"][7]["content"])
-        + "\n今日概述："+str(data["newslist"][8]["content"])
-        
-        return data
-        # except:
-        #     return ("星座运势API调取错误，请检查API是否正确申请或是否填写正确")
+            return "".join(data)
+        except:
+            return ("星座运势API调取错误，请检查API是否正确申请或是否填写正确")
 
 #励志名言
 def lizhi():
