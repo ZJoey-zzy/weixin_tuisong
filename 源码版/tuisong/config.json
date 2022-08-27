@@ -1,7 +1,7 @@
 {
     "app_id": "wx5430bf8a1bd14210",
     "app_secret": "0dab8af22e064f3f3e23b456f2675aca",
-    "template_id": "7EPyZoI0y14a9mRk4K0rH5mbTA9rCFtbtRwlxW3T6IM",
+    "template_id": "8T634nMvHf9ly4LUzcEA34QaateJiT42hEQPaZ95b40",
     "user": [
         "oBNF-6Sz09Fy86K9P2LUq9UvSSxY" ,
     ],
@@ -12,7 +12,7 @@
     "Whether_Eng": true,
     "Whether_caihongpi": true,
     "Whether_lizhi": true,
-    "Whether_tip": false,
+    "Whether_tip": true,
     "Whether_health": true,
     "Whether_lucky": true,
     "tianxing_API": "1333db493976bc43dd71a8efb5b61548",
