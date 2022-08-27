@@ -164,7 +164,12 @@ def lucky():
             res = conn.getresponse()
             data = res.read()
             data = json.loads(data)
-            data = "爱情指数："+str(data["newslist"][1]["content"])+"   工作指数："+str(data["newslist"][2]["content"])+"\n今日概述："+str(data["newslist"][8]["content"])
+            
+            data = "爱情指数："+str(data["newslist"][1]["content"]) 
+            + "\n学习指数："+str(data["newslist"][2]["content"])
+            + "\n财运指数："+str(data["newslist"][3]["content"])
+            + "\n贵人星座："+str(data["newslist"][7]["content"])
+            + "\n今日概述："+str(data["newslist"][8]["content"])
             return data
         except:
             return ("星座运势API调取错误，请检查API是否正确申请或是否填写正确")
@@ -218,6 +223,15 @@ def send_message(to_user, access_token, city_name, weather, max_temperature, min
     love_date = date(love_year, love_month, love_day)
     # 获取在一起的日期差
     love_days = str(today.__sub__(love_date)).split(" ")[0]
+    
+    # 获取姨妈期的日子的日期格式
+    menses_year = int(config["menses_date"].split("-")[0])
+    menses_month = int(config["menses_date"].split("-")[1])
+    menses_day = int(config["menses_date"].split("-")[2])
+    menses_date = date(menses_year, menses_month, menses_day)
+    # 获取在一起的日期差
+    menses_days = - int(str(today.__sub__(menses_date)).split(" ")[0])
+    
     # 获取所有生日数据
     birthdays = {}
     for k, v in config.items():
@@ -253,6 +267,10 @@ def send_message(to_user, access_token, city_name, weather, max_temperature, min
                 "value": love_days,
                 "color": get_color()
             },
+            "menses_day": {
+                "value": menses_days,
+                "color": get_color()
+            },
             "note_en": {
                 "value": note_en,
                 "color": get_color()
@@ -273,7 +291,7 @@ def send_message(to_user, access_token, city_name, weather, max_temperature, min
             },
 
             "lizhi": {
-                "value": lizhi,
+                "value": lizhi_,
                 "color": get_color()
             },
 
@@ -361,12 +379,12 @@ if __name__ == "__main__":
     #下雨概率和建议
     pop,tips = tip()
     #励志名言
-    lizhi = lizhi()
+    lizhi_ = lizhi()
     #星座运势
     lucky_ = lucky()
     # 公众号推送消息
     for user in users:
-        send_message(user, accessToken, city, weather, max_temperature, min_temperature, pipi, lizhi,pop,tips, note_en, note_ch, health_tip, lucky_)
+        send_message(user, accessToken, city, weather, max_temperature, min_temperature, pipi, lizhi_, pop,tips, note_en, note_ch, health_tip, lucky_)
     import time
     time_duration = 3.5
     time.sleep(time_duration)
