@@ -164,15 +164,30 @@ def lucky():
             res = conn.getresponse()
             data = res.read()
             data = json.loads(data)
+            
+            year = localtime().tm_year
+            month = localtime().tm_mon
+            day = localtime().tm_mday
+            date = f'{year}-{month}-{day}'
+            conn = http.client.HTTPSConnection('api.tianapi.com')  #接口域名
+            params = urllib.parse.urlencode({'key':tianxing_API,'date':date})
+            headers = {'Content-type':'application/x-www-form-urlencoded'}
+            conn.request('POST','/lunar/index',params,headers)
+            res = conn.getresponse()
+            data2 = res.read()
+            data2 = json.loads(data2)
+            
 
             data = ["爱情指数：" + str(data["newslist"][1]["content"]),
                     "\n学习指数："+str(data["newslist"][2]["content"]),
                     "\n财运指数："+str(data["newslist"][3]["content"]),
-                    "\n今日概述："+ "，".join(str(data["newslist"][8]["content"]).split("，")[:3]) + "..."]
+                    "\n宜："+ str(data2["newslist"][0]["fitness"]),
+                    "\n忌："+ str(data2["newslist"][0]["taboo"]),
+                    ]
         
             return "".join(data)
         except:
-            return ("星座运势API调取错误，请检查API是否正确申请或是否填写正确")
+            return ("星座运势或老黄历API调取错误，请检查API是否正确申请或是否填写正确")
 
 #励志名言
 def lizhi():
