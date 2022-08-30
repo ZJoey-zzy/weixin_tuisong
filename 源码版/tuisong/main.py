@@ -178,7 +178,7 @@ def lucky():
             data2 = json.loads(data2)
             
 
-            data = ["爱情指数：" + str(data["newslist"][1]["content"]),
+            data = ["综合指数：" + str(data["newslist"][0]["content"]),
                     "\n学习指数："+str(data["newslist"][2]["content"]),
                     "\n财运指数："+str(data["newslist"][3]["content"]),
                     "\n宜："+ str(data2["newslist"][0]["fitness"]),
